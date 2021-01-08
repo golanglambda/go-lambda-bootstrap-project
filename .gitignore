@@ -1,0 +1,17 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+go-lambda-bootstrap-project
+
+# IDEs
+.idea
+
+# Cloudformation output template
+go-lambda-bootstrap-project-output.yaml
+
+.DS_Store
+
+tmp/

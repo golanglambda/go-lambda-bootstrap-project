@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Parameters:
+  ServiceName:
+    Type: "String"
+  Environment:
+    Type: "String"
+  LogLevel:
+    Type: "String"
+    Default: "info"
+
+Resources:
+  HelloLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${ServiceName}-${Environment}"
+      Handler: go-lambda-bootstrap-project
+      Timeout: 10
+      CodeUri: .
+      Runtime: "go1.x"
+      Environment:
+        Variables:
+          LOG_LEVEL: !Sub "${LogLevel}"
+      Events:
+        EveryMinute:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 minute)
